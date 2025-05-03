@@ -1,0 +1,69 @@
+import pandas as pd
+import joblib
+from flask import Flask, request, jsonify, render_template
+
+# Load model, scaler, and encoders
+model = joblib.load("autism_model.pkl")
+scaler = joblib.load("scaler.pkl")
+label_encoders = joblib.load("label_encoders.pkl")
+
+# Initialize Flask app
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    try:
+        data = request.form
+        print("Form Data:", data)  # Log incoming form data
+
+        user_data = {}
+        for col, value in data.items():
+            if col in label_encoders.keys():
+                try:
+                    user_data[col] = label_encoders[col].transform([value])[0]
+                except Exception as e:
+                    return jsonify({"error": f"Label Encoding Error for {col}: {value}, {str(e)}"})
+            elif col == "age":
+                try:
+                    user_data[col] = float(value)
+                except ValueError:
+                    return jsonify({"error": f"Invalid numeric value for {col}: {value}"})
+            else:
+                try:
+                    user_data[col] = int(value)
+                except ValueError:
+                    return jsonify({"error": f"Invalid integer value for {col}: {value}"})
+
+        print("User Data:", user_data)  # Log user data before DataFrame conversion
+
+        user_df = pd.DataFrame([user_data])
+
+        all_columns = list(label_encoders.keys()) + ["age"]
+        for col in all_columns:
+            if col not in user_df.columns:
+                user_df[col] = 0
+
+        user_df = user_df[all_columns]
+        print("Final DataFrame Columns:", user_df.columns.tolist())
+        print("Final DataFrame Values:\n", user_df)
+
+        # Select only numerical columns for scaling
+        numerical_cols = ["age"]
+        user_df[numerical_cols] = scaler.transform(user_df[numerical_cols])
+
+        print("After Scaling:\n", user_df)
+
+        prediction = model.predict(user_df)[0]
+        result = "Autism" if prediction == 1 else "No Autism"
+        return render_template("result.html", prediction=result)
+
+    except Exception as e:
+        print("Error:", str(e))
+        return jsonify({"error": str(e)})
+
+if __name__ == "__main__":
+    app.run(debug=True)
