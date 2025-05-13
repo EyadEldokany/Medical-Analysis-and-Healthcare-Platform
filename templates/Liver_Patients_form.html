@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشخيص مرض الكبد</title>
+    <style>
+        body {
+            background-color: #f4f6f7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        h3 {
+            color: #34495e;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="number"], select {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            direction: ltr;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-group {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧬 تطبيق تشخيص مرض الكبد</h1>
+    <h3>أدخل نتائج التحاليل 👇</h3>
+    <form action="/liver" method="post">
+        <div class="form-group">
+            <label>Age of the patient (عمر المريض)</label>
+            <input type="number" name="Age of the patient" min="0" max="120" step="1" required>
+            <div class="hint">أدخل العمر (مثال: 25)</div>
+
+            <label>Gender of the patient (جنس المريض)</label>
+            <select name="Gender of the patient" required>
+                <option value="Male">ذكر</option>
+                <option value="Female">أنثى</option>
+            </select>
+            <div class="hint">اختر الجنس</div>
+
+            <label>Total Bilirubin (البيليروبين الكلي) (mg/dL)</label>
+            <input type="number" name="Total Bilirubin" min="0" max="10" step="0.01" required>
+            <div class="hint">المعدل الطبيعي: 0.1 إلى 1.2 mg/dL</div>
+
+            <label>Direct Bilirubin (البيليروبين المباشر) (mg/dL)</label>
+            <input type="number" name="Direct Bilirubin" min="0" max="2" step="0.01" required>
+            <div class="hint">المعدل الطبيعي: 0 إلى 0.3 mg/dL</div>
+
+            <label>Alk Phos Alkaline Phosphatase (الفوسفاتاز القلوي) (U/L)</label>
+            <input type="number" name="Alk Phos Alkaline Phosphatase" min="0" max="500" step="1" required>
+            <div class="hint">المعدل الطبيعي: 44 إلى 147 U/L</div>
+
+            <label>Sgpt Alanine Aminotransferase (ALT) (ألانين أمينوترانسفيراز) (U/L)</label>
+            <input type="number" name="Sgpt Alanine Aminotransferase" min="0" max="200" step="1" required>
+            <div class="hint">المعدل الطبيعي: 7 إلى 56 U/L</div>
+
+            <label>Sgot Aspartate Aminotransferase (AST) (أسبارتات أمينوترانسفيراز) (U/L)</label>
+            <input type="number" name="Sgot Aspartate Aminotransferase" min="0" max="200" step="1" required>
+            <div class="hint">المعدل الطبيعي: 8 إلى 40 U/L</div>
+
+            <label>Total Proteins (إجمالي البروتينات) (g/dL)</label>
+            <input type="number" name="Total Proteins" min="0" max="12" step="0.1" required>
+            <div class="hint">المعدل الطبيعي: 6 إلى 8.3 g/dL</div>
+
+            <label>ALB Albumin (الألبومين) (g/dL)</label>
+            <input type="number" name="ALB Albumin" min="0" max="10" step="0.1" required>
+            <div class="hint">المعدل الطبيعي: 3.4 إلى 5.4 g/dL</div>
+
+            <label>A/G Ratio Albumin and Globulin Ratio (نسبة الألبومين إلى الجلوبولين)</label>
+            <input type="number" name="A/G Ratio Albumin and Globulin Ratio" min="0" max="3" step="0.01" required>
+            <div class="hint">المعدل الطبيعي: من 1.1 إلى 2.5</div>
+        </div>
+
+        <button type="submit">🔍 تنبأ</button>
+    </form>
+</body>
+</html>

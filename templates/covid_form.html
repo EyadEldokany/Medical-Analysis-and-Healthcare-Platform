@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>التنبؤ بحالات الكورونا الخطيرة</title>
+  <style>
+    body {
+      background-color: #f4f6f7;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 30px;
+      direction: rtl;
+    }
+
+    h1, h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      width: 85%;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .form-columns {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      text-align: right;
+      width: 45%;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      direction: ltr;
+      font-size: 15px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      padding: 12px 40px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 30px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    @media (max-width: 768px) {
+      .form-group {
+        width: 100%;
+      }
+
+      form {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>تطبيق التنبؤ بالكورونا</h1>
+  <h3>أدخل بيانات المريض 👇</h3>
+
+  <form action="/corona" method="post">
+    <div class="form-columns">
+
+      <div class="form-group">
+        <label>هل تلقى المريض العلاج في وحدة صحية (usmer):</label>
+        <select name="usmer" required>
+          <option value="0">لا</option>
+          <option value="1">نعم</option>
+        </select>
+
+        <label>الوحدة الطبية (medical_unit) من 1 إلى 13:</label>
+        <input type="number" name="medical_unit" min="1" max="13" required>
+
+        <label>الجنس (sex):</label>
+        <select name="sex" required>
+          <option value="0">ذكر</option>
+          <option value="1">أنثى</option>
+        </select>
+
+        <label>نوع المريض (patient_type):</label>
+        <select name="patient_type" required>
+          <option value="0">عاد للبيت</option>
+          <option value="1">احتجز فالمستشفى</option>
+        </select>
+
+        <label>الالتهاب الرئوي (pneumonia):</label>
+        <select name="pneumonia" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>العمر:</label>
+        <input type="number" name="age" min="0" max="121" required>
+
+        <label>الحمل (pregnant):</label>
+        <select name="pregnant" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>السكري (diabetes):</label>
+        <select name="diabetes" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>COPD (الانسداد الرئوي المزمن):</label>
+        <select name="copd" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>الربو (asthma):</label>
+        <select name="asthma" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>ضعف المناعة (inmsupr):</label>
+        <select name="inmsupr" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>ارتفاع ضغط الدم (hipertension):</label>
+        <select name="hipertension" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>أمراض أخرى (other_disease):</label>
+        <select name="other_disease" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>أمراض القلب (cardiovascular):</label>
+        <select name="cardiovascular" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>السمنة (obesity):</label>
+        <select name="obesity" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>أمراض الكلى المزمنة (renal_chronic):</label>
+        <select name="renal_chronic" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>التدخين (tobacco):</label>
+        <select name="tobacco" required>
+          <option value="0.0">لا</option>
+          <option value="1.0">نعم</option>
+        </select>
+
+        <label>تصنيف موجة الكورونا (clasiffication_final):</label>
+        <select name="clasiffication_final" required>
+          <option value="1">موجة أولى</option>
+          <option value="2">موجة ثانية</option>
+          <option value="3">موجة ثالثة</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit">🔍 تنبأ</button>
+  </form>
+</body>
+</html>

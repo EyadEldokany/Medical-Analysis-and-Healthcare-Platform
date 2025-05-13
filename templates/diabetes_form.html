@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            background-color: #f4f6f7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            direction: ltr;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-columns {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            text-align: right;
+            width: 45%;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>💉 تطبيق التنبؤ بمرض السكري</h1>
+    <h3>أدخل بيانات المريض 👇</h3>
+    <form action="/diabetes" method="post">
+        <div class="form-columns">
+            <div class="form-group">
+                <label>عدد مرات الحمل:</label><br>
+                <input type="text" name="Pregnancies">
+                <div class="hint">الطبيعي: من 0 إلى 10 مرات تقريبًا</div>
+
+                <label>ضغط الدم (mm Hg):</label><br>
+                <input type="text" name="BloodPressure">
+                <div class="hint">الطبيعي الانبساطى: 70 - 90 مم زئبق</div>
+
+                <label>الإنسولين (mu U/ml):</label><br>
+                <input type="text" name="Insulin">
+                <div class="hint">الطبيعي: 16 - 166 وحدة</div>
+
+                <label>عامل الوراثة (DPF):</label><br>
+                <input type="text" name="DiabetesPedigreeFunction">
+                <div class="hint">الطبيعي: 0.0 - 2.5</div>
+            </div>
+
+            <div class="form-group">
+                <label>نسبة الجلوكوز (mg/dL):</label><br>
+                <input type="text" name="Glucose">
+                <div class="hint">الطبيعي: 70 - 140 بعد الأكل</div>
+
+                <label>سُمك الجلد (mm):</label><br>
+                <input type="text" name="SkinThickness">
+                <div class="hint">الطبيعي: 10 - 50 مم تقريبًا</div>
+
+                <label>مؤشر كتلة الجسم (BMI):</label><br>
+                <input type="text" name="BMI">
+                <div class="hint">الطبيعي: 18.5 - 24.9</div>
+
+                <label>العمر (بالسنوات):</label><br>
+                <input type="text" name="Age">
+                <div class="hint">عادة من 18 إلى 80 سنة</div>
+            </div>
+        </div>
+        <br>
+        <button type="submit">🔍 تنبأ</button>
+    </form>
+</body>
+</html>

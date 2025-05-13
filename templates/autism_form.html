@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التنبؤ بالتوحد</title>
+    <style>
+        body {
+            background-color: #f4f6f7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        h3 {
+            color: #34495e;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="number"], select {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            direction: ltr;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-columns {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            text-align: right;
+            width: 45%;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧠 تطبيق التنبؤ بالتوحد</h1>
+    <h3>أدخل بيانات المريض 👇</h3>
+    <form action="/predict" method="post">
+        <div class="form-columns">
+            <div class="form-group">
+                <label>السؤال 1: ألاحظ أصواتًا صغيرة لا يلاحظها الآخرون</label><br>
+                <select name="A1_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 2: أركز على الصورة الكلية أكثر من التفاصيل</label><br>
+                <select name="A2_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 3: أجد سهولة في القيام بأكثر من مهمة في وقت واحد</label><br>
+                <select name="A3_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 4: إذا تمت مقاطعتي، أعود بسهولة لما كنت أفعله</label><br>
+                <select name="A4_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 5: أجد سهولة في فهم المعاني الضمنية في الحديث</label><br>
+                <select name="A5_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 6: أجد سهولة في تخمين ما يفكر به الآخرون</label><br>
+                <select name="A6_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 7: أستمتع بالدردشة الاجتماعية</label><br>
+                <select name="A7_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>العمر (بالسنوات):</label><br>
+                <input type="number" name="age" min="0" max="120" step="0.1" required>
+                <div class="hint">أدخل العمر كرقم (مثال: 2 إلى 80)</div>
+            </div>
+
+            <div class="form-group">
+                <label>السؤال 8: يخبرني الناس أنني أتحدث عن نفس الموضوع كثيرًا</label><br>
+                <select name="A8_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 9: كنت أستمتع بألعاب التخيل في الطفولة</label><br>
+                <select name="A9_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>السؤال 10: أجد سهولة في معرفة نوايا الناس</label><br>
+                <select name="A10_Score" required>
+                    <option value="0">لا</option>
+                    <option value="1">نعم</option>
+                </select>
+                <div class="hint">اختر نعم أو لا</div>
+
+                <label>الجنس:</label><br>
+                <select name="gender" required>
+                    <option value="0">ذكر</option>
+                    <option value="1">أنثى</option>
+                </select>
+                <div class="hint">اختر الجنس</div>
+
+                <label>اليرقان عند الولادة:</label><br>
+                <select name="jundice" required>
+                    <option value="1">نعم</option>
+                    <option value="0">لا</option>
+                </select>
+                <div class="hint">هل كان هناك يرقان عند الولادة؟</div>
+
+                <label>تاريخ عائلي للتوحد:</label><br>
+                <select name="austim" required>
+                    <option value="1">نعم</option>
+                    <option value="0">لا</option>
+                </select>
+                <div class="hint">هل يوجد تاريخ عائلي للتوحد؟</div>
+
+                <label>العرق:</label><br>
+                <select name="ethnicity" required>
+                    <option value="0">آسيوي</option>
+                    <option value="1">أسود</option>
+                    <option value="2">هسباني</option>
+                    <option value="3">لاتيني</option>
+                    <option value="4">شرق أوسطي</option>
+                    <option value="5">آخرون</option>
+                    <option value="6">باسيفيكي</option>
+                    <option value="7">جنوب آسيوي</option>
+                    <option value="8"> تركي</option>
+                    <option value="9">أوروبي أبيض</option>
+                </select>
+                <div class="hint">اختر العرق</div>
+            </div>
+        </div>
+        <br>
+        <button type="submit">🔍 تنبأ</button>
+    </form>
+</body>
+</html>
