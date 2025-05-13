@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Load models and scalers
 try:
     # سكر
-    diabetes_data = pickle.load(open('models/Diabetes_prediction_KNeighborsClassifier.pkl', 'rb'))
+    diabetes_data = pickle.load(open('models/Diabetes_model_KNeighborsClassifier.pkl', 'rb'))
     diabetes_model = diabetes_data['model']
     diabetes_scaler = diabetes_data['scaler']
 
